@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Parts Catalog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f0f0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; margin-bottom: 20px; }
+        .header { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logout-btn { background: #e53e3e; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; }
+        .parts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .part-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .part-card h3 { color: #667eea; margin-bottom: 10px; }
+        .price { font-size: 24px; font-weight: bold; color: #e53e3e; margin: 10px 0; }
+        .stock { color: #38a169; }
+        .manufacturer { color: #666; font-size: 14px; }
+        .category { background: #e2e8f0; display: inline-block; padding: 3px 8px; border-radius: 5px; font-size: 12px; margin: 5px 0; }
+        .description { color: #666; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Car Parts Store</h1>
+        <a href="logout" class="logout-btn">Logout</a>
+    </div>
+
+    <div id="partsGrid" class="parts-grid">
+        <p>Loading parts...</p>
+    </div>
+</div>
+
+<script>
+    function loadParts() {
+        fetch('/car-parts-store/parts')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const table = doc.querySelector('table');
+                if (table) {
+                    const rows = table.querySelectorAll('tr');
+                    const parts = [];
+                    for (let i = 1; i < rows.length; i++) {
+                        const cols = rows[i].querySelectorAll('td');
+                        if (cols.length >= 6) {
+                            parts.push({
+                                id: cols[0].textContent,
+                                name: cols[1].textContent,
+                                category: cols[2].textContent,
+                                manufacturer: cols[3].textContent,
+                                price: cols[4].textContent,
+                                stock: cols[5].textContent
+                            });
+                        }
+                    }
+                    displayParts(parts);
+                }
+            });
+    }
+
+    function displayParts(parts) {
+        const grid = document.getElementById('partsGrid');
+        if (parts.length === 0) {
+            grid.innerHTML = '<p>No parts available.</p>';
+            return;
+        }
+        grid.innerHTML = '';
+        parts.forEach(part => {
+            grid.innerHTML += `
+                <div class="part-card">
+                    <h3>${part.name}</h3>
+                    <div class="category">${part.category}</div>
+                    <div class="manufacturer">Brand: ${part.manufacturer}</div>
+                    <div class="price">$${part.price}</div>
+                    <div class="stock">In stock: ${part.stock} pcs</div>
+                </div>
+            `;
+        });
+    }
+
+    loadParts();
+</script>
+</body>
+</html>

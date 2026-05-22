@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация - Магазин автозапчастей</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .auth-form { background: white; max-width: 400px; margin: 100px auto; padding: 40px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .auth-form h2 { margin-bottom: 20px; color: #333; text-align: center; }
+        .auth-form input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; }
+        .auth-form button { width: 100%; padding: 12px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .auth-form button:hover { background: #5a67d8; }
+        .auth-form p { text-align: center; margin-top: 20px; }
+        a { color: #667eea; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="auth-form">
+        <h2>📝 Регистрация нового пользователя</h2>
+        <form action="register" method="post" accept-charset="UTF-8">
+            <input type="text" name="username" placeholder="Имя пользователя" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Телефон">
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+    </div>
+</div>
+</body>
+</html>
