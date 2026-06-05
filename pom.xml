@@ -12,13 +12,13 @@
 
     <name>Car Parts Store</name>
     <description>Интернет-магазин автозапчастей на чистой Java (без фреймворков)</description>
-    <url>https://github.com/Kuriwan97/car-parts-store</url>
+    <url>https://github.com/Kuriwan97/car-parts-store1</url>
 
     <!-- Привязка к Git -->
     <scm>
-        <connection>scm:git:https://github.com/Kuriwan97/car-parts-store.git</connection>
-        <developerConnection>scm:git:git@github.com:Kuriwan97/car-parts-store.git</developerConnection>
-        <url>https://github.com/Kuriwan97/car-parts-store</url>
+        <connection>scm:git:https://github.com/Kuriwan97/car-parts-store1.git</connection>
+        <developerConnection>scm:git:git@github.com:Kuriwan97/car-parts-store1.git</developerConnection>
+        <url>https://github.com/Kuriwan97/car-parts-store1</url>
         <tag>HEAD</tag>
     </scm>
 
